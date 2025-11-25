@@ -1,0 +1,18 @@
+{
+  "name": "com.ikeiwa.better-player-sync.Editor",
+  "references": [
+    "VRC.SDK3",
+    "VRC.SDK3.Editor",
+    "VRC.SDKBase",
+    "VRC.SDKBase.Editor",
+    "com.ikeiwa.better-player-sync"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "autoReferenced": true,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "defineConstraints": [],
+  "optionalUnityReferences": []
+}
