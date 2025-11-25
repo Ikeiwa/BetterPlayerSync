@@ -54,6 +54,7 @@ jobs:
       - name: Make Release
         uses: softprops/action-gh-release@1e07f4398721186383de40550babbdf2b84acfc5
         with:
+          token: ${{ secrets.PAT }}
           name: "${{ env.releasePrefix }} ${{ steps.version.outputs.prop }}"
           tag_name: ${{ steps.version.outputs.prop }}
           files: |
