@@ -15,13 +15,14 @@ namespace Ikeiwa.BetterPlayerSync.Runtime
         [UdonSynced] private Vector3 _playerPosition;
         [UdonSynced] private Quaternion _playerRotation;
         [UdonSynced] private Vector3 _playerVelocity;
+        [UdonSynced] private float _playerGravity;
+        [UdonSynced] private bool _enabled;
 
         private VRCPlayerApi _owner;
         private bool _isLocal;
         private VRCStation _station;
         private float _physDuration;
         private CharacterController _characterController;
-        private bool _enabled;
 
         public VRCPlayerApi Owner => _owner;
         public bool IsLocal => _isLocal;
@@ -40,17 +41,17 @@ namespace Ikeiwa.BetterPlayerSync.Runtime
                 _isLocal = true;
                 _station.PlayerMobility = VRCStation.Mobility.Mobile;
                 if(autoActivate)
-                    SendCustomEventDelayedSeconds(nameof(_AutoActivate),1);
+                    SendCustomEventDelayedSeconds(nameof(_AutoActivate),2);
             }
         }
     
         private void FixedUpdate()
         {
-            if (_isLocal) return;
+            if (_isLocal || !_enabled) return;
         
             Vector3 desiredMove = _playerVelocity;
 
-            float gravityContribution = _owner.GetGravityStrength() * Time.fixedDeltaTime * Physics.gravity.y;
+            float gravityContribution = _playerGravity * Time.fixedDeltaTime * Physics.gravity.y;
             if (_characterController.isGrounded)
                 gravityContribution = 0;
 
@@ -77,18 +78,18 @@ namespace Ikeiwa.BetterPlayerSync.Runtime
             _characterController.Move(_playerVelocity * (float)updateTime);
         }
 
-        public override void OnStationExited(VRCPlayerApi player)
-        {
-            if(_enabled)
-                SetSyncState(true);
-        }
-
         public override void OnPlayerRespawn(VRCPlayerApi player)
         {
             if (disableOnRespawn)
                 SetSyncState(false);
             else
-                SetSyncState(true);
+                SendCustomEventDelayedFrames(nameof(_AutoActivate),5);
+        }
+
+        public override void OnPlayerLeft(VRCPlayerApi player)
+        {
+            if (player != _owner) return;
+            _enabled = false;
         }
 
         #endregion
@@ -105,6 +106,7 @@ namespace Ikeiwa.BetterPlayerSync.Runtime
             _playerPosition = _owner.GetPosition();
             _playerRotation = _owner.GetRotation();
             _playerVelocity = _owner.GetVelocity();
+            _playerGravity = _owner.GetGravityStrength();
         
             transform.position = _playerPosition;
             RequestSerialization();
@@ -128,6 +130,8 @@ namespace Ikeiwa.BetterPlayerSync.Runtime
             }
             else
                 _station.ExitStation(_owner);
+            
+            RequestSerialization();
         }
 
         #endregion

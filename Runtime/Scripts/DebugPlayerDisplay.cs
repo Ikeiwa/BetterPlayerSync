@@ -1,5 +1,6 @@
 ﻿using UdonSharp;
 using UnityEngine;
+using VRC.SDKBase;
 
 namespace Ikeiwa.BetterPlayerSync.Runtime
 {
@@ -18,7 +19,7 @@ namespace Ikeiwa.BetterPlayerSync.Runtime
 
         public void _StartDebug()
         {
-            _playerSync = BetterPlayerSync.Find();
+            _playerSync = BetterPlayerSync.Find(Networking.GetOwner(gameObject));
             if(_playerSync.IsLocal) gameObject.SetActive(false);
         }
 
@@ -28,9 +29,11 @@ namespace Ikeiwa.BetterPlayerSync.Runtime
             
             syncCapsule.position = _playerSync.transform.position;
             syncCapsule.rotation = _playerSync.transform.rotation;
+            syncCapsule.Translate(new Vector3(0,0.825f,0), Space.Self);
 
             avatarCapsule.position = _playerSync.Owner.GetPosition();
             avatarCapsule.rotation = _playerSync.Owner.GetRotation();
+            avatarCapsule.Translate(new Vector3(0,0.825f,0), Space.Self);
         }
     }
 }
