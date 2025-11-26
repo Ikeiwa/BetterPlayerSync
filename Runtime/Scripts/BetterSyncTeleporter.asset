@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: BetterSyncTeleporter
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: 08a6f2735f57f654696dd543c5bce52d,
-    type: 2}
+  serializedUdonProgramAsset: {fileID: 11400000, guid: d4fa7c0425e5263458b754c518c4a5ba, type: 2}
   udonAssembly: 
   assemblyError: 
   sourceCsScript: {fileID: 11500000, guid: d256042887e54f64ca6f9a09a63e6f84, type: 3}

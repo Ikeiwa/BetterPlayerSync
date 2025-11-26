@@ -1,7 +1,7 @@
 {
   "name": "com.ikeiwa.better-player-sync",
   "displayName": "Better Player Sync",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Allows a better sync of players movement using manual sync and prediction",
   "gitDependencies": {},
   "vpmDependencies": {

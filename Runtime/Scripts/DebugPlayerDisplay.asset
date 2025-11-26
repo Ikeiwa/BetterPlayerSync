@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: DebugPlayerDisplay
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: 37746a43782725449986eec0d923bd1b,
-    type: 2}
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 16eceb3df44c3e44492027114a40db7e, type: 2}
   udonAssembly: 
   assemblyError: 
   sourceCsScript: {fileID: 11500000, guid: 9d9991b1d89c3ba4ab6edbd5b32d9dba, type: 3}
@@ -176,7 +175,7 @@ MonoBehaviour:
       Data: 10|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: Ikeiwa.BetterPlayerSync.Runtime.BetterPlayerSync, Ikeiwa.BetterPlayerSync.Runtime
+      Data: Ikeiwa.BetterPlayerSync.Runtime.BetterPlayerSync, com.ikeiwa.better-player-sync
     - Name: 
       Entry: 8
       Data: 
